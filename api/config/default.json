@@ -1,0 +1,5 @@
+{
+  "PORT": 3002,
+  "requiresAuth": true,
+  "TMDB_WRAPPER_URL": "https://movieql.netlify.app/graphql"
+}
