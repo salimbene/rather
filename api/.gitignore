@@ -15,11 +15,13 @@ pids
 *.pid
 *.seed
 *.pid.lock
+*.zip
 
 # Dependency directories
 node_modules/
 jspm_packages/
 fabric/
+build/
 fn/*.sh
 
 # Optional npm cache directory

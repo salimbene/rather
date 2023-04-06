@@ -4,8 +4,7 @@ import Link from "next/link";
 import FavsContext from "../contexts/favs";
 import AuthContext from "../contexts/auth";
 
-import config from "../config.json";
-const { TMDB_IMG_BASE_URL } = config;
+const tmdbUrl = process.env.NEXT_PUBLIC_TMDB_URL;
 
 export default function Card({ details, removeBtn }) {
   const [favContent, setFavContent] = useContext(FavsContext);
@@ -35,10 +34,7 @@ export default function Card({ details, removeBtn }) {
             },
           }}
         >
-          <img
-            src={`${TMDB_IMG_BASE_URL}/${poster_path}`}
-            alt={title || name}
-          />
+          <img src={`${tmdbUrl}/${poster_path}`} alt={title || name} />
         </Link>
       </div>
       <h3>{title || name}</h3>

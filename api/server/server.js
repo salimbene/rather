@@ -3,9 +3,7 @@ require('dotenv').config();
 
 const logger = require('./util/logger');
 const config = require('config');
-const helmet = require('helmet');
 const cors = require('cors');
-const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 
@@ -16,12 +14,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(helmet());
 
+const env = app.get('env');
 // logging HTTP request in development only
-if (process.env.NODE_ENV === 'development') {
+if (env === 'development') {
+  const morgan = require('morgan');
   app.use(morgan('dev'));
-}
+} else require('./startup/prod')(app);
 
 // express routes setup
 require('./startup/routes')(app);
@@ -33,7 +32,7 @@ const port = process.env.PORT || config.get('PORT');
 const { name } = require('../package.json');
 
 const server = app.listen(port, () => {
-  logger.info(`app booted on ${process.env.NODE_ENV} environment`);
+  logger.info(`app booted on ${env} environment`);
   logger.info(`${name} is listening on ${port}`);
 });
 

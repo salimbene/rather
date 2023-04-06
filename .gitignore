@@ -29,6 +29,8 @@ fn/*.sh
 
 # Optional npm cache directory
 .npm
+.zip
+.mov
 
 # Optional eslint cache
 .eslintcache
