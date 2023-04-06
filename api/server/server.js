@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-const env = app.get('env');
+const env = process.env.NODE_ENV;
 // logging HTTP request in development only
 if (env === 'development') {
   const morgan = require('morgan');
